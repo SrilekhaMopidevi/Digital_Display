@@ -1,0 +1,42 @@
+FORMAT=INTEL
+-map-warn-noigcase-noxref-format=INTEL
+d:\projects\msl\led\led1 = C:\PROGRA~1\COMPASS\rtl\startups.obj,\
+d:\projects\msl\led\main.obj,\
+C:\PROGRA~1\COMPASS\rtl\helpers.lib,C:\PROGRA~1\COMPASS\rtl\nfpem.obj,C:\PROGRA~1\COMPASS\rtl\crtls.lib
+LOCATE __vectors at $0
+SEQUENCE __vectors,__startup,c_text,c_const
+OVERLAY __vectors
+RANGE bit $00 : $7f
+RANGE idata TOP of data + 1 : $ff
+RANGE data ((TOP of bit + 8) / 8 + $20) : $7f
+SEQUENCE bit,data,idata
+RANGE code $0 : $ffff
+RANGE xdata $0 : $ffff
+define _c_far_heaptop = HIGHADDR of xdata
+define _c_farstack = TOP of xdata + 1
+define _c_nearstack = TOP of idata
+define _c_near_heaptop = HIGHADDR of data
+define _low_bitbss = LOWADDR of c_bitbss
+define _len_bitbss = LENGTH of c_bitbss
+define _low_nearbss = BASE of c_nearbss
+define _len_nearbss = LENGTH of c_nearbss
+define _low_idatabss = BASE of c_idatabss
+define _len_idatabss = LENGTH of c_idatabss
+define _low_farbss = BASE of c_farbss
+define _len_farbss = LENGTH of c_farbss
+define _low_bitdata = BASE of c_bitdata
+define _len_bitdata = LENGTH of c_bitdata
+define _low_neardata = BASE of c_neardata
+define _len_neardata = LENGTH of c_neardata
+define _low_idata = BASE of c_idata
+define _len_idata = LENGTH of c_idata
+define _low_fardata = BASE of c_fardata
+define _len_fardata = LENGTH of c_fardata
+define _low_bit_romdata = COPY BASE of c_bitdata
+define _low_near_romdata = COPY BASE of c_neardata
+define _low_idata_romdata = COPY BASE of c_idata
+define _low_far_romdata = COPY BASE of c_fardata
+copy c_bitdata code
+copy c_neardata code
+copy c_idata code
+copy c_fardata code

@@ -1,0 +1,203 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/13/2019  15:58:24  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\SerialTest PRINT (.\Listings\SerialTest.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (STRLEN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\SerialTest (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?_SERIAL_STRING_TX?MAIN
+            DATA    000FH     0007H     UNIT         _DATA_GROUP_
+            DATA    0016H     0001H     UNIT         ?DT?MAIN
+            IDATA   0017H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0046H     UNIT         ?C?LIB_CODE
+            CODE    00D5H     0040H     UNIT         ?PR?_SERIAL_STRING_TX_LN?MAIN
+            CODE    0115H     0037H     UNIT         ?PR?_SERIAL_STRING_TX?MAIN
+            CODE    014CH     001AH     UNIT         ?PR?INITILIZESERIAL?MAIN
+            CODE    0166H     0018H     UNIT         ?PR?TIMER_INIT?MAIN
+            CODE    017EH     0016H     UNIT         ?PR?MAIN?MAIN
+            CODE    0194H     0015H     UNIT         ?PR?_STRLEN?STRLEN
+            CODE    01A9H     000EH     UNIT         ?PR?_SERIAL_TRANSMIT?MAIN
+            CODE    01B7H     000CH     UNIT         ?CO?MAIN
+            CODE    01C3H     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\SerialTest (MAIN)
+
+
+SEGMENT                                 DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                         -----    -----
+  +--> ?PR?TIMER_INIT?MAIN
+  +--> ?PR?INITILIZESERIAL?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  15:58:24  PAGE 2
+
+
+  +--> ?CO?MAIN
+  +--> ?PR?_SERIAL_STRING_TX_LN?MAIN
+
+?PR?_SERIAL_STRING_TX_LN?MAIN         000FH    0007H
+  +--> ?PR?_STRLEN?STRLEN
+  +--> ?PR?_SERIAL_TRANSMIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\SerialTest (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00E8H         PUBLIC        P4
+  C:00D5H         PUBLIC        _SERIAL_STRING_TX_LN
+  C:0115H         PUBLIC        _SERIAL_STRING_TX
+  D:00A8H         PUBLIC        IE
+  B:0080H.0       PUBLIC        P0_0
+  C:01AFH         PUBLIC        _SERIAL_TRANSMIT
+  C:0166H         PUBLIC        TIMER_INIT
+  C:014CH         PUBLIC        InitilizeSerial
+  B:0098H.1       PUBLIC        TI
+  C:017EH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0016H         PUBLIC        temp_char
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  B:0098H.4       PUBLIC        REN
+  -------         PROC          MAIN
+  C:017EH         LINE#         12
+  C:017EH         LINE#         14
+  C:0181H         LINE#         15
+  C:0184H         LINE#         16
+  C:0186H         LINE#         17
+  C:0189H         LINE#         18
+  C:0192H         LINE#         19
+  -------         ENDPROC       MAIN
+  -------         PROC          INITILIZESERIAL
+  C:014CH         LINE#         22
+  C:014CH         LINE#         23
+  C:014FH         LINE#         24
+  C:0152H         LINE#         25
+  C:0155H         LINE#         26
+  C:0158H         LINE#         27
+  C:015BH         LINE#         28
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  15:58:24  PAGE 3
+
+
+  C:015EH         LINE#         29
+  C:0160H         LINE#         30
+  C:0162H         LINE#         31
+  C:0165H         LINE#         33
+  -------         ENDPROC       INITILIZESERIAL
+  -------         PROC          TIMER_INIT
+  C:0166H         LINE#         35
+  C:0166H         LINE#         36
+  C:0169H         LINE#         37
+  C:016BH         LINE#         38
+  C:016DH         LINE#         39
+  C:016FH         LINE#         40
+  C:0172H         LINE#         41
+  C:0175H         LINE#         42
+  C:0178H         LINE#         43
+  C:017BH         LINE#         44
+  C:017DH         LINE#         45
+  -------         ENDPROC       TIMER_INIT
+  -------         PROC          _SERIAL_STRING_TX_LN
+  D:000FH         SYMBOL        tx_String
+  -------         DO            
+  D:0012H         SYMBOL        i
+  D:0014H         SYMBOL        stringSize
+  -------         ENDDO         
+  C:00D5H         LINE#         47
+  C:00DBH         LINE#         50
+  C:00E2H         LINE#         51
+  C:00F2H         LINE#         52
+  C:00FEH         LINE#         53
+  C:0101H         LINE#         54
+  C:010BH         LINE#         55
+  C:0110H         LINE#         56
+  -------         ENDPROC       _SERIAL_STRING_TX_LN
+  -------         PROC          _SERIAL_STRING_TX
+  D:0008H         SYMBOL        tx_String
+  -------         DO            
+  D:000BH         SYMBOL        i
+  D:000DH         SYMBOL        stringSize
+  -------         ENDDO         
+  C:0115H         LINE#         59
+  C:011BH         LINE#         62
+  C:0122H         LINE#         63
+  C:0132H         LINE#         64
+  C:013EH         LINE#         65
+  C:0141H         LINE#         66
+  C:014BH         LINE#         67
+  -------         ENDPROC       _SERIAL_STRING_TX
+  -------         PROC          L?0019
+  -------         ENDPROC       L?0019
+  -------         PROC          _SERIAL_TRANSMIT
+  D:0007H         SYMBOL        tx_char
+  C:01AFH         LINE#         69
+  C:01AFH         LINE#         70
+  C:01B1H         LINE#         71
+  C:01B4H         LINE#         72
+  C:01B6H         LINE#         73
+  -------         ENDPROC       _SERIAL_TRANSMIT
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  15:58:24  PAGE 4
+
+
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:008FH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        STRLEN
+  C:0194H         PUBLIC        _STRLEN
+  -------         ENDMOD        STRLEN
+
+  -------         MODULE        ?C?CLDPTR
+  C:00BCH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_STRING_TX?MAIN
+
+Program Size: data=24.0 xdata=0 code=455
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

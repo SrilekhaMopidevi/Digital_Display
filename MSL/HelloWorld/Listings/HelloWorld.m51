@@ -1,0 +1,235 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        02/13/2019  16:55:39  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\HelloWorld PRINT (.\Listings\HelloWorld.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (STRLEN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\HelloWorld (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     003FH     UNIT         ?DT?MAIN
+            DATA    0047H     0009H     UNIT         _DATA_GROUP_
+            IDATA   0050H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001CH     UNIT         ?PR?MAIN?MAIN
+                    001FH     0004H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     0046H     UNIT         ?C?LIB_CODE
+            CODE    00F8H     003DH     UNIT         ?PR?_SERIAL_STRING_TX?MAIN
+            CODE    0135H     0033H     UNIT         ?PR?SERIAL_RECIEVE?MAIN
+            CODE    0168H     001AH     UNIT         ?PR?SERIAL_INIT?MAIN
+            CODE    0182H     0018H     UNIT         ?PR?TIMER_INIT?MAIN
+            CODE    019AH     0018H     UNIT         ?CO?MAIN
+            CODE    01B2H     0015H     UNIT         ?PR?_STRLEN?STRLEN
+            CODE    01C7H     0012H     UNIT         ?PR?_DELAY?MAIN
+            CODE    01D9H     0008H     UNIT         ?PR?_SERIAL_TRANSMIT?MAIN
+            CODE    01E1H     0008H     UNIT         ?PR?SERIAL_RX?MAIN
+            CODE    01E9H     0007H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\HelloWorld (MAIN)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  16:55:39  PAGE 2
+
+
+?PR?MAIN?MAIN                      0047H    0002H
+  +--> ?PR?TIMER_INIT?MAIN
+  +--> ?PR?SERIAL_INIT?MAIN
+  +--> ?CO?MAIN
+  +--> ?PR?_SERIAL_STRING_TX?MAIN
+
+?PR?_SERIAL_STRING_TX?MAIN         0049H    0007H
+  +--> ?PR?_STRLEN?STRLEN
+  +--> ?PR?_SERIAL_TRANSMIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\HelloWorld (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00E8H         PUBLIC        P4
+  D:0008H         PUBLIC        RECIEVEbuffer
+  C:00F8H         PUBLIC        _SERIAL_STRING_TX
+  D:00A8H         PUBLIC        IE
+  C:01C7H         PUBLIC        _delay
+  B:0080H.6       PUBLIC        P0_6
+  B:00A8H.4       PUBLIC        ES
+  C:01D9H         PUBLIC        _SERIAL_TRANSMIT
+  C:0182H         PUBLIC        TIMER_INIT
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:0003H         PUBLIC        main
+  C:0135H         PUBLIC        SERIAL_RECIEVE
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0045H         PUBLIC        temp_char
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  C:01E1H         PUBLIC        SERIAL_RX
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  C:0168H         PUBLIC        SERIAL_INIT
+  D:0046H         SYMBOL        rxBytes
+  -------         PROC          MAIN
+  -------         DO            
+  D:0047H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         20
+  C:0003H         LINE#         21
+  C:0008H         LINE#         22
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  16:55:39  PAGE 3
+
+
+  C:000AH         LINE#         23
+  C:000CH         LINE#         24
+  C:000EH         LINE#         25
+  C:0011H         LINE#         26
+  C:0014H         LINE#         27
+  C:001DH         LINE#         29
+  C:001DH         LINE#         31
+  -------         ENDPROC       MAIN
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        delayValue
+  -------         DO            
+  D:0004H         SYMBOL        i
+  -------         ENDDO         
+  C:01C7H         LINE#         34
+  C:01C7H         LINE#         36
+  C:01D8H         LINE#         37
+  -------         ENDPROC       _DELAY
+  -------         PROC          SERIAL_INIT
+  C:0168H         LINE#         39
+  C:0168H         LINE#         40
+  C:016BH         LINE#         41
+  C:016EH         LINE#         42
+  C:0171H         LINE#         43
+  C:0174H         LINE#         44
+  C:0177H         LINE#         45
+  C:017AH         LINE#         46
+  C:017CH         LINE#         47
+  C:017EH         LINE#         48
+  C:0181H         LINE#         49
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          TIMER_INIT
+  C:0182H         LINE#         51
+  C:0182H         LINE#         52
+  C:0185H         LINE#         53
+  C:0187H         LINE#         54
+  C:0189H         LINE#         55
+  C:018BH         LINE#         56
+  C:018EH         LINE#         57
+  C:0191H         LINE#         58
+  C:0194H         LINE#         59
+  C:0197H         LINE#         60
+  C:0199H         LINE#         61
+  -------         ENDPROC       TIMER_INIT
+  -------         PROC          _SERIAL_STRING_TX
+  D:0049H         SYMBOL        tx_String
+  -------         DO            
+  D:004CH         SYMBOL        i
+  D:004EH         SYMBOL        stringSize
+  -------         ENDDO         
+  C:00F8H         LINE#         63
+  C:00FEH         LINE#         66
+  C:0105H         LINE#         67
+  C:0115H         LINE#         68
+  C:0126H         LINE#         69
+  C:012AH         LINE#         70
+  C:0134H         LINE#         71
+  -------         ENDPROC       _SERIAL_STRING_TX
+BL51 BANKED LINKER/LOCATER V6.22                                                      02/13/2019  16:55:39  PAGE 4
+
+
+  -------         PROC          _SERIAL_TRANSMIT
+  D:0007H         SYMBOL        tx_char
+  C:01D9H         LINE#         73
+  C:01D9H         LINE#         74
+  C:01DBH         LINE#         75
+  C:01DEH         LINE#         76
+  C:01E0H         LINE#         77
+  -------         ENDPROC       _SERIAL_TRANSMIT
+  -------         PROC          SERIAL_RX
+  C:01E1H         LINE#         79
+  C:01E1H         LINE#         80
+  C:01E4H         LINE#         81
+  C:01E6H         LINE#         82
+  C:01E8H         LINE#         83
+  -------         ENDPROC       SERIAL_RX
+  -------         PROC          SERIAL_RECIEVE
+  -------         DO            
+  D:0006H         SYMBOL        value
+  -------         ENDDO         
+  C:0135H         LINE#         85
+  C:0144H         LINE#         87
+  C:0146H         LINE#         88
+  C:0149H         LINE#         89
+  C:014BH         LINE#         90
+  C:0157H         LINE#         91
+  C:0159H         LINE#         92
+  C:015BH         LINE#         93
+  C:015BH         LINE#         94
+  -------         ENDPROC       SERIAL_RECIEVE
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDOPTR
+  C:00B2H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        STRLEN
+  C:01B2H         PUBLIC        _STRLEN
+  -------         ENDMOD        STRLEN
+
+  -------         MODULE        ?C?CLDPTR
+  C:00DFH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIAL_RX?MAIN
+
+Program Size: data=81.0 xdata=0 code=492
+LINK/LOCATE RUN COMPLETE.  2 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,120 @@
+C51 COMPILER V9.54   MAIN                                                                  02/13/2019 16:55:39 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <MPCx58AP.h>
+   2          #include <string.h>
+   3          
+   4          #define LOW   0
+   5          #define HIGH  1
+   6          #define RXBUFFSIZE  60
+   7          
+   8          void delay(unsigned int);
+   9          void TIMER_INIT(void);
+  10          void SERIAL_INIT(void);
+  11          void SERIAL_TRANSMIT(unsigned char tx_char);
+  12          void SERIAL_STRING_TX(unsigned char *tx_String);
+  13          unsigned char SERIAL_RX(void);
+  14          
+  15          unsigned char temp_char=0;
+  16          unsigned char RECIEVEbuffer[RXBUFFSIZE+1];
+  17          
+  18          static unsigned char rxBytes=0;
+  19          
+  20          void main(void){
+  21   1        unsigned int i=0;
+  22   1        P0 = LOW;
+  23   1        P1 = LOW;
+  24   1        P2 = LOW;
+  25   1        TIMER_INIT();
+  26   1        SERIAL_INIT();
+  27   1        SERIAL_STRING_TX("Serial Port Initialized");
+  28   1      
+  29   1        while(1){
+  30   2          ;;
+  31   2        }
+  32   1      }
+  33          
+  34          void delay(unsigned int delayValue){
+  35   1        unsigned int i;
+  36   1        for(i=0;i<=delayValue;i++);
+  37   1      }
+  38          
+  39          void SERIAL_INIT(void){
+  40   1        SCON=0x50;
+  41   1        PCON |=0X80;
+  42   1        TMOD&=0xCF; 
+  43   1        TMOD|=0x20; 
+  44   1        TH1=0xFF;   // setting buadrate to 115200 bps
+  45   1        TL1=0x00;
+  46   1        TR1=1;
+  47   1        ES = 1;
+  48   1        IE &= 0x90;  
+  49   1      } // SERIAL_INIT ends here
+  50          
+  51          void TIMER_INIT(void){
+  52   1        TMOD=0x00;
+  53   1        IE=0x00;
+  54   1        TR0=0;
+C51 COMPILER V9.54   MAIN                                                                  02/13/2019 16:55:39 PAGE 2   
+
+  55   1        TF0=0;
+  56   1        TMOD|=0x01;
+  57   1        IE|=0x82;
+  58   1        TH0=0xF8;   // setting 1ms timer
+  59   1        TL0=0xCD;
+  60   1        TR0=1;
+  61   1      } // TIMER_INIT ends here
+  62          
+  63          void SERIAL_STRING_TX(unsigned char *tx_String){   // For sending a String
+  64   1        unsigned int i,stringSize;
+  65   1        
+  66   1        stringSize = strlen(tx_String); // Calculate the String length
+  67   1        for(i=0;i<stringSize;i++){
+  68   2          temp_char = tx_String[i];  
+  69   2          SERIAL_TRANSMIT(temp_char);  // Send each character to the SERIAL_TRANSMIT function
+  70   2        }
+  71   1      }
+  72          
+  73          void SERIAL_TRANSMIT(unsigned char tx_char){  // For sending each character
+  74   1        SBUF=tx_char;  //Store the incoming character in SUBF
+  75   1        while(TI==0);  // Wait until Tx bit is High
+  76   1        TI=0;   // Make it 0 once it's high
+  77   1      }
+  78          
+  79          unsigned char SERIAL_RX(void){
+  80   1        while(RI==0);
+  81   1        RI=0;
+  82   1        return SBUF;
+  83   1      }
+  84          
+  85          void SERIAL_RECIEVE(void) interrupt 4{
+  86   1        unsigned value;
+  87   1        P0_6 =~ P0_6;
+  88   1        if(RI){
+  89   2          value = SBUF;
+  90   2          RECIEVEbuffer[rxBytes++]=value;
+  91   2          SBUF = value;
+  92   2          RI = 0;
+  93   2        }
+  94   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    224    ----
+   CONSTANT SIZE    =     24    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     63       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

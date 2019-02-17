@@ -1,0 +1,372 @@
+
+IEEE 695 OMF Linker Version: 4.01
+Copyright (C) 1990-1992,Production Languages Corporation
+
+LINK MAP:
+
+DATE:      Sat Feb 09 22:26:10 2019
+PROCESSOR: 8051
+FILES:     C:\PROGRA~1\COMPASS\rtl\startups.obj
+           d:\projects\msl\led\main.obj
+           C:\PROGRA~1\COMPASS\rtl\helpers.lib
+           C:\PROGRA~1\COMPASS\rtl\nfpem.obj
+           C:\PROGRA~1\COMPASS\rtl\crtls.lib
+           
+
+
+COMMAND LIST:
+=============
+FORMAT=INTEL
+-map-warn-noigcase-noxref-format=INTEL
+d:\projects\msl\led\led1 = C:\PROGRA~1\COMPASS\rtl\startups.obj,d:\projects\msl\led\main.obj,C:\PROGRA~1\COMPASS\rtl\helpers.lib,C:\PROGRA~1\COMPASS\rtl\nfpem.obj,C:\PROGRA~1\COMPASS\rtl\crtls.lib
+LOCATE __vectors at $0
+SEQUENCE __vectors,__startup,c_text,c_const
+OVERLAY __vectors
+RANGE bit $00 : $7f
+RANGE idata TOP of data + 1 : $ff
+RANGE data ((TOP of bit + 8) / 8 + $20) : $7f
+SEQUENCE bit,data,idata
+RANGE code $0 : $ffff
+RANGE xdata $0 : $ffff
+define _c_far_heaptop = HIGHADDR of xdata
+define _c_farstack = TOP of xdata + 1
+define _c_nearstack = TOP of idata
+define _c_near_heaptop = HIGHADDR of data
+define _low_bitbss = LOWADDR of c_bitbss
+define _len_bitbss = LENGTH of c_bitbss
+define _low_nearbss = BASE of c_nearbss
+define _len_nearbss = LENGTH of c_nearbss
+define _low_idatabss = BASE of c_idatabss
+define _len_idatabss = LENGTH of c_idatabss
+define _low_farbss = BASE of c_farbss
+define _len_farbss = LENGTH of c_farbss
+define _low_bitdata = BASE of c_bitdata
+define _len_bitdata = LENGTH of c_bitdata
+define _low_neardata = BASE of c_neardata
+define _len_neardata = LENGTH of c_neardata
+define _low_idata = BASE of c_idata
+define _len_idata = LENGTH of c_idata
+define _low_fardata = BASE of c_fardata
+define _len_fardata = LENGTH of c_fardata
+define _low_bit_romdata = COPY BASE of c_bitdata
+define _low_near_romdata = COPY BASE of c_neardata
+define _low_idata_romdata = COPY BASE of c_idata
+define _low_far_romdata = COPY BASE of c_fardata
+copy c_bitdata code
+copy c_neardata code
+copy c_idata code
+copy c_fardata code
+
+SEGMENT OVERLAYS:
+=================
+
+Name                                     Base        Top       Length
+------------------------------------ ----------- ----------- ----------
+Section: __seg__Start                       d:29        d:29          0
+Section: __seg__Load                        d:32        d:34          3
+Section: __seg__GetEffect                   d:32        d:33          2
+Section: __seg__Display0                    d:32        d:34          3
+Section: __seg__Display1                    d:32        d:33          2
+Section: __seg__Display2                    d:32        d:33          2
+Section: __seg__TCharLoad                   d:43        d:4B          9
+Section: __seg__Blank1                      d:43        d:47          5
+Section: __seg__AddBlank                    d:43        d:46          4
+Section: __seg__Blank0                      d:43        d:47          5
+Section: __VECTORS                        c:0000      c:0025         38
+
+SPACE ALLOCATION:
+=================
+
+Space              Base        Top         Size
+------------------ ----------- ----------- ---------
+BIT                       b:00        b:00        1h
+CODE                    c:0000      c:44DF     44e0h
+DATA                      d:21        d:63       43h
+XDATA                   x:0000      x:8063     8064h
+
+
+SEGMENTS WITHIN SPACE:
+======================
+
+BIT                Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+C_BITDATA          normal data                b:00        b:00        1h
+
+
+CODE               Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+C_BITDATA          * segment copy *         c:44D0      c:44D0        1h
+C_CONST            normal data              c:01AA      c:23FA     2251h
+C_NEARDATA         * segment copy *         c:44D1      c:44DF        fh
+C_TEXT             normal data              c:0152      c:01A9       58h
+MAIN_TEXT          normal data              c:23FB      c:44CF     20d5h
+
+
+DATA               Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+C_NEARBSS          normal data                d:4D        d:54        8h
+C_NEARDATA         normal data                d:55        d:63        fh
+
+
+XDATA              Type                Base        Top         Size
+------------------ ------------------- ----------- ----------- ---------
+_seg__Buff1        absolute data            x:0000      x:2EDF     2ee0h
+_seg__dport        absolute data            x:8000      x:8063       64h
+C_FARBSS           normal data              x:2EE0      x:7D00     4e21h
+
+SEGMENTS WITHIN MODULES:
+========================
+
+Module: D:\PROJECTS\MSL\LED\MAIN.C (File: main.obj) Version: 1:0 02/09/2019 22:22:01
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: __seg__AddBlank                       d:43        d:46         4
+    Segment: __seg__Blank0                         d:43        d:47         5
+    Segment: __seg__Blank1                         d:43        d:47         5
+    Segment: __seg__Center                         d:32        d:33         2
+    Segment: __seg__Delay                          d:21        d:22         2
+    Segment: __seg__Display0                       d:32        d:34         3
+    Segment: __seg__Display1                       d:32        d:33         2
+    Segment: __seg__Display2                       d:32        d:33         2
+    Segment: __seg__ECharLoad                      d:43        d:4B         9
+    Segment: __seg__GetEffect                      d:32        d:33         2
+    Segment: __seg__Load                           d:32        d:42        17
+    Segment: __seg__ProcessData                    d:29        d:29         1
+    Segment: __seg__SerialInt                      d:23        d:28         6
+    Segment: __seg__Start                          d:29        d:31         9
+    Segment: __seg__TCharLoad                      d:43        d:4C        10
+    Segment: __VECTORS                           c:0000      c:0025        38
+    Segment: _seg__Buff1                         x:0000      x:2EDF     12000
+    Segment: _seg__dport                         x:8000      x:8063       100
+    Segment: C_BITDATA                             b:00        b:00         1
+    Segment: C_CONST                             c:01AA      c:23FA      8785
+    Segment: C_FARBSS                            x:2EE0      x:7D00     20001
+    Segment: C_NEARBSS                             d:54        d:54         1
+    Segment: C_NEARDATA                            d:55        d:63        15
+    Segment: MAIN_TEXT                           c:23FB      c:44CF      8405
+
+
+Module: m:\8051\rtl\nfpem.asm (File: nfpem.obj) Version: 1:0 07/07/1996 20:55:53
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: C_TEXT                              c:0152      c:0153         2
+
+
+Module: m:\8051\rtl\startups.asm (File: startups.obj) Version: 1:0 11/13/1996 16:09:35
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: __startup                           c:007E      c:0151       212
+    Segment: __VECTORS                           c:0000      c:007D       126
+    Segment: C_NEARBSS                             d:4D        d:53         7
+
+
+Module: m:\8051\rtl\uwshr.asm (Library: helpers.lib) Version: 1:0 12/03/1996 11:25:57
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: C_TEXT                              c:0154      c:0183        48
+
+
+Module: m:\8051\rtl\uwsmul.asm (Library: helpers.lib) Version: 1:0 12/03/1996 11:25:11
+
+    Name                                        Base        Top      Size
+    --------------------------------------- ----------- ----------- ---------
+    Segment: C_TEXT                              c:0184      c:01A9        38
+
+EXTERNAL DEFINITIONS:
+=====================
+
+Symbol                             Address   Module          Segment
+-------------------------------- ----------- --------------- --------------------------------
+_0__far__u_dtoe                         d:00 nfpem           C_NEARBSS                       
+_0__far__u_dtof                         d:00 nfpem           C_NEARBSS                       
+_0__far__u_dtog                         d:00 nfpem           C_NEARBSS                       
+_0__near_atof                           d:00 nfpem           C_NEARBSS                       
+_0__near_frexp                          d:00 nfpem           C_NEARBSS                       
+_0__near_modf                           d:00 nfpem           C_NEARBSS                       
+_0__near_strtod                         d:00 nfpem           C_NEARBSS                       
+_0__u_near_dtoe                         d:00 nfpem           C_NEARBSS                       
+_0__u_near_dtof                         d:00 nfpem           C_NEARBSS                       
+_0__u_near_dtog                         d:00 nfpem           C_NEARBSS                       
+_0_acos                                 d:00 nfpem           C_NEARBSS                       
+_0_asin                                 d:00 nfpem           C_NEARBSS                       
+_0_atan                                 d:00 nfpem           C_NEARBSS                       
+_0_atan2                                d:00 nfpem           C_NEARBSS                       
+_0_ceil                                 d:00 nfpem           C_NEARBSS                       
+_0_cos                                  d:00 nfpem           C_NEARBSS                       
+_0_cosh                                 d:00 nfpem           C_NEARBSS                       
+_0_Delay                                d:22 MAIN            __seg__Delay                    
+_0_ECharLoad                            d:4B MAIN            __seg__ECharLoad                
+_0_exp                                  d:00 nfpem           C_NEARBSS                       
+_0_fabs                                 d:00 nfpem           C_NEARBSS                       
+_0_far_atof                             d:00 nfpem           C_NEARBSS                       
+_0_far_frexp                            d:00 nfpem           C_NEARBSS                       
+_0_far_modf                             d:00 nfpem           C_NEARBSS                       
+_0_far_strtod                           d:00 nfpem           C_NEARBSS                       
+_0_floor                                d:00 nfpem           C_NEARBSS                       
+_0_fmod                                 d:00 nfpem           C_NEARBSS                       
+_0_ldexp                                d:00 nfpem           C_NEARBSS                       
+_0_log                                  d:00 nfpem           C_NEARBSS                       
+_0_log10                                d:00 nfpem           C_NEARBSS                       
+_0_pow                                  d:00 nfpem           C_NEARBSS                       
+_0_sin                                  d:00 nfpem           C_NEARBSS                       
+_0_sinh                                 d:00 nfpem           C_NEARBSS                       
+_0_sqrt                                 d:00 nfpem           C_NEARBSS                       
+_0_tan                                  d:00 nfpem           C_NEARBSS                       
+_0_tanh                                 d:00 nfpem           C_NEARBSS                       
+_0_TCharLoad                            d:4C MAIN            __seg__TCharLoad                
+_1__far__u_dtoe                         d:00 nfpem           C_NEARBSS                       
+_1__far__u_dtof                         d:00 nfpem           C_NEARBSS                       
+_1__far__u_dtog                         d:00 nfpem           C_NEARBSS                       
+_1__near_frexp                          d:00 nfpem           C_NEARBSS                       
+_1__near_modf                           d:00 nfpem           C_NEARBSS                       
+_1__near_strtod                         d:00 nfpem           C_NEARBSS                       
+_1__u_near_dtoe                         d:00 nfpem           C_NEARBSS                       
+_1__u_near_dtof                         d:00 nfpem           C_NEARBSS                       
+_1__u_near_dtog                         d:00 nfpem           C_NEARBSS                       
+_1_atan2                                d:00 nfpem           C_NEARBSS                       
+_1_far_frexp                            d:00 nfpem           C_NEARBSS                       
+_1_far_modf                             d:00 nfpem           C_NEARBSS                       
+_1_far_strtod                           d:00 nfpem           C_NEARBSS                       
+_1_fmod                                 d:00 nfpem           C_NEARBSS                       
+_1_ldexp                                d:00 nfpem           C_NEARBSS                       
+_1_pow                                  d:00 nfpem           C_NEARBSS                       
+_2__far__u_dtoe                         d:00 nfpem           C_NEARBSS                       
+_2__far__u_dtof                         d:00 nfpem           C_NEARBSS                       
+_2__far__u_dtog                         d:00 nfpem           C_NEARBSS                       
+_2__u_near_dtoe                         d:00 nfpem           C_NEARBSS                       
+_2__u_near_dtof                         d:00 nfpem           C_NEARBSS                       
+_2__u_near_dtog                         d:00 nfpem           C_NEARBSS                       
+__far__u_dtoe                         c:0152 nfpem           C_TEXT                          
+__far__u_dtof                         c:0152 nfpem           C_TEXT                          
+__far__u_dtog                         c:0152 nfpem           C_TEXT                          
+__fp                                    d:50 startups        C_NEARBSS                       
+__fp_abs                              c:0152 nfpem           C_TEXT                          
+__fp_add                              c:0152 nfpem           C_TEXT                          
+__fp_cmp                              c:0152 nfpem           C_TEXT                          
+__fp_div                              c:0152 nfpem           C_TEXT                          
+__fp_ltos                             c:0152 nfpem           C_TEXT                          
+__fp_mul                              c:0152 nfpem           C_TEXT                          
+__fp_neg                              c:0152 nfpem           C_TEXT                          
+__fp_stol                             c:0152 nfpem           C_TEXT                          
+__fp_sub                              c:0152 nfpem           C_TEXT                          
+__near_allocp                           d:4F startups        C_NEARBSS                       
+__near_atof                           c:0152 nfpem           C_TEXT                          
+__near_frexp                          c:0152 nfpem           C_TEXT                          
+__near_heapbot                          d:4E startups        C_NEARBSS                       
+__near_heaptop                          d:4D startups        C_NEARBSS                       
+__near_modf                           c:0152 nfpem           C_TEXT                          
+__near_strtod                         c:0152 nfpem           C_TEXT                          
+__sp                                    d:52 startups        C_NEARBSS                       
+__u_near_dtoe                         c:0152 nfpem           C_TEXT                          
+__u_near_dtof                         c:0152 nfpem           C_TEXT                          
+__u_near_dtog                         c:0152 nfpem           C_TEXT                          
+__u_wsmul                             c:0184 uwsmul          C_TEXT                          
+__u_wsshr                             c:0154 uwshr           C_TEXT                          
+__u_wumul                             c:0184 uwsmul          C_TEXT                          
+__u_wushr                             c:0173 uwshr           C_TEXT                          
+_acos                                 c:0152 nfpem           C_TEXT                          
+_AddBlank                             c:37C4 MAIN            MAIN_TEXT                       
+_asin                                 c:0152 nfpem           C_TEXT                          
+_atan                                 c:0152 nfpem           C_TEXT                          
+_atan2                                c:0152 nfpem           C_TEXT                          
+_Blank0                               c:409B MAIN            MAIN_TEXT                       
+_Blank1                               c:426B MAIN            MAIN_TEXT                       
+_Buff1                                x:0000 MAIN            _seg__Buff1                     
+_Buff2                                x:2EE0 MAIN            C_FARBSS                        
+_Buff3                                x:55F0 MAIN            C_FARBSS                        
+_c_far_heaptop                      0000FFFF (User Defined)
+_c_farstack                         00008064 (User Defined)
+_c_near_heaptop                     0000007F (User Defined)
+_c_nearstack                        00000063 (User Defined)
+_c_startup                            c:007E startups        __startup                       
+_ceil                                 c:0152 nfpem           C_TEXT                          
+_Center                               c:3480 MAIN            MAIN_TEXT                       
+_Check                                  d:57 MAIN            C_NEARDATA                      
+_Check1                                 d:5B MAIN            C_NEARDATA                      
+_cos                                  c:0152 nfpem           C_TEXT                          
+_cosh                                 c:0152 nfpem           C_TEXT                          
+_Count                                  d:5D MAIN            C_NEARDATA                      
+_Delay                                c:449B MAIN            MAIN_TEXT                       
+_DInt                                   b:00 MAIN            C_BITDATA                       
+_Display0                             c:380A MAIN            MAIN_TEXT                       
+_Display1                             c:3AD1 MAIN            MAIN_TEXT                       
+_Display2                             c:3D86 MAIN            MAIN_TEXT                       
+_dport                                x:8000 MAIN            _seg__dport                     
+_ECharLoad                            c:35AC MAIN            MAIN_TEXT                       
+_exp                                  c:0152 nfpem           C_TEXT                          
+_Ext1                                   d:5E MAIN            C_NEARDATA                      
+_Ext2                                   d:5F MAIN            C_NEARDATA                      
+_fabs                                 c:0152 nfpem           C_TEXT                          
+_far_atof                             c:0152 nfpem           C_TEXT                          
+_far_frexp                            c:0152 nfpem           C_TEXT                          
+_far_modf                             c:0152 nfpem           C_TEXT                          
+_far_strtod                           c:0152 nfpem           C_TEXT                          
+_floor                                c:0152 nfpem           C_TEXT                          
+_fmod                                 c:0152 nfpem           C_TEXT                          
+_Get1                                   d:60 MAIN            C_NEARDATA                      
+_Get2                                   d:62 MAIN            C_NEARDATA                      
+_Getch                                c:3560 MAIN            MAIN_TEXT                       
+_GetEffect                            c:2C19 MAIN            MAIN_TEXT                       
+_Glob                                   d:59 MAIN            C_NEARDATA                      
+_H_16_Eng                             c:01AA MAIN            C_CONST                         
+_H_16_Tam                             c:0EA7 MAIN            C_CONST                         
+_InitilizeSerial                      c:44B0 MAIN            MAIN_TEXT                       
+_ldexp                                c:0152 nfpem           C_TEXT                          
+_len_bitbss                         00000000 (User Defined)
+_len_bitdata                        00000001 (User Defined)
+_len_farbss                         00004E21 (User Defined)
+_len_fardata                        00000000 (User Defined)
+_len_idata                          00000000 (User Defined)
+_len_idatabss                       00000000 (User Defined)
+_len_nearbss                        00000008 (User Defined)
+_len_neardata                       0000000F (User Defined)
+_Load                                 c:2D6F MAIN            MAIN_TEXT                       
+_log                                  c:0152 nfpem           C_TEXT                          
+_log10                                c:0152 nfpem           C_TEXT                          
+_low_bit_romdata                    000044D0 (User Defined)
+_low_bitbss                         00000000 (User Defined)
+_low_bitdata                        00000000 (User Defined)
+_low_far_romdata                    00000000 (User Defined)
+_low_farbss                         00002EE0 (User Defined)
+_low_fardata                        00000000 (User Defined)
+_low_idata                          00000000 (User Defined)
+_low_idata_romdata                  00000000 (User Defined)
+_low_idatabss                       00000000 (User Defined)
+_low_near_romdata                   000044D1 (User Defined)
+_low_nearbss                        0000004D (User Defined)
+_low_neardata                       00000055 (User Defined)
+_main                                 c:23FB MAIN            MAIN_TEXT                       
+_Mess1                                c:2395 MAIN            C_CONST                         
+_Mess2                                c:23A0 MAIN            C_CONST                         
+_Mess3                                c:23B8 MAIN            C_CONST                         
+_Mess4                                c:23C6 MAIN            C_CONST                         
+_Offset                                 d:55 MAIN            C_NEARDATA                      
+_pow                                  c:0152 nfpem           C_TEXT                          
+_ProcessData                          c:281F MAIN            MAIN_TEXT                       
+_row                                    d:54 MAIN            C_NEARBSS                       
+_SerialInt                            c:34B7 MAIN            MAIN_TEXT                       
+_sin                                  c:0152 nfpem           C_TEXT                          
+_sinh                                 c:0152 nfpem           C_TEXT                          
+_sqrt                                 c:0152 nfpem           C_TEXT                          
+_Start                                c:2419 MAIN            MAIN_TEXT                       
+_tan                                  c:0152 nfpem           C_TEXT                          
+_tanh                                 c:0152 nfpem           C_TEXT                          
+_TCharLoad                            c:36B7 MAIN            MAIN_TEXT                       
+_Zero                                 x:7D00 MAIN            C_FARBSS                        
+
+176 external symbol(s).
+
+
+START ADDRESS:
+==============
+(c:007E) set in module m:\8051\rtl\startups.asm.
+
+
+END OF LINK MAP:
+================
+0 Errors
+0 Warnings
