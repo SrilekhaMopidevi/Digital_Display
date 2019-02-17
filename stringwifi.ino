@@ -2,13 +2,17 @@
 #include "ESP8266WebServer.h"
 #include "WiFiClient.h"
  
-const char* ssid = "Startrek";
-const char* password = "Face fade12#";
-IPAddress ip(192,168,0,221);
+const char* ssid = "ESP8266";
+const char* password = "Welcome12#";
+IPAddress ip(192,168,0,222);
 IPAddress gateway(192,168,0,1);
 IPAddress subnet(255,255,255,0);
 
 ESP8266WebServer server(80); 
+
+void handleRoot();              // function prototypes for HTTP handlers
+void handleLED();
+void handleNotFound();
 
 void setup() {
   wifi_connect();
@@ -21,14 +25,7 @@ void loop() {
 
   server.handleClient();
 
-  /*WiFiClient client = server.available();
-  if (!client) {
-    Serial.println(".");
-    delay(1000);
-    return;
-  
-  }*/
-  
+ 
   String request = client.readStringUntil('\r');
   Serial.println(request);
   client.flush();
