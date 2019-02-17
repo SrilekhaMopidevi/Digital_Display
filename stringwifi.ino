@@ -53,36 +53,41 @@ void loop() {
 
 void wifi_connect(void){
   
+  delay(1000);
   Serial.begin(115200);
   delay(10);
+  Serial.print();
+  Serial.println("Configuring acces point.");
   
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  //set-up the custom IP address
+  WiFi.mode(WIFI_AP_STA);
+  Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Ready" : "Failed!");
+  delay(1000);
   
-  WiFi.config(ip,gateway,subnet);
-  WiFi.begin(ssid, password);
+  Serial.print("Setting soft-AP ... ");
+  Serial.println(WiFi.softAP(ssid,password) ? "Ready" : "Failed!");
+  delay(1000);
   
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(250);
-    Serial.print(".");
-  }
-  
-  Serial.println("");
-  Serial.println("WiFi connected"); 
-  
-  server.begin();
-  Serial.println("Web Server Started");
-  
-  Serial.print("Connect to the Server: ");
-  Serial.print("http://");
-  Serial.print(ip);
-  Serial.println();
-  Serial.println();
-   server.on("/", [](){
-    server.send(200, "text/html", );
-  });
+  Serial.print("AP IP address: ");
+  Serial.println(WiFi.softAPIP());
+  delay(1000);
+ 
+  server.on("/", HTTP_GET, handleRoot); // Call the 'handleRoot' function when a client requests URI "/"
+  server.onNotFound(handleNotFound);        // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
+  server.begin();                           // Actually start the server
+  Serial.println("HTTP server started");
+}
 
-    server.begin();
-   
+void handleRoot() {                         // When URI / is requested, send a web page with a button to toggle the LED
+  server.send(200, "text/html", "<form action=\"/LED\" method=\"POST\"><input type=\"submit\" value=\"Toggle LED\"></form>");
+}
+
+void handleLED() {                          // If a POST request is made to URI /LED
+ // digitalWrite(led,!digitalRead(led));      // Change the state of the LED
+  server.sendHeader("Location","/");        // Add a header to respond with a new location for the browser to go to the home page again
+  server.send(303);                         // Send it back to the browser with an HTTP status 303 (See Other) to redirect
+}
+
+void handleNotFound(){
+  server.send(404, "text/plain", "404: Not found"); // Send HTTP status 404 (Not Found) when there's no handler for the URI in the request
 }
