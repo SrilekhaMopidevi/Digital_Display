@@ -73,7 +73,9 @@ void wifi_connect(void){
   delay(1000);
  
   server.on("/", HTTP_GET, handleRoot); // Call the 'handleRoot' function when a client requests URI "/"
+  server.on("/LED", HTTP_POST, handleRespond); // Call the 'handleRespond' function when a POST request is made to URI "/LED"
   server.onNotFound(handleNotFound);        // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
+  
   server.begin();                           // Actually start the server
   Serial.println("HTTP server started");
 }
@@ -82,8 +84,8 @@ void handleRoot() {                         // When URI / is requested, send a w
   server.send(200, "text/html", "<form action=\"/LED\" method=\"POST\"><input type=\"submit\" value=\"Toggle LED\"></form>");
 }
 
-void handleLED() {                          // If a POST request is made to URI /LED
- // digitalWrite(led,!digitalRead(led));      // Change the state of the LED
+void handleRespond() {                          // If a POST request is made to URI /LED
+ 
   server.sendHeader("Location","/");        // Add a header to respond with a new location for the browser to go to the home page again
   server.send(303);                         // Send it back to the browser with an HTTP status 303 (See Other) to redirect
 }
