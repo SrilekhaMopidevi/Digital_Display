@@ -29,24 +29,26 @@ void loop() {
   String request = client.readStringUntil('\r');
   Serial.println(request);
   client.flush();
-  client.println("HTTP/1.1 200 OK"); 
-  client.println("Content-Type: text/html");
-  client.println("");
-  client.println("<!DOCTYPE HTML>");
-  client.println("<head>");
-  client.println("</head>"); 
-  client.println("<style>");
-  client.println("body {background-color: #8baee8;}"); 
-  client.println("</style>");
-  client.print("<h1><b>NOTICE BOARD </b></h1>");
-  client.println("<br><br><br>");
-  client.println("<form action=\"/DIGITAL NOTICE BOARD.php\">");
-  client.println("ENTER THE NOTICE HERE:<br>");
-  client.println("<input type=\"text\" name=\"NOTICE IS \"><br>");
-  client.println("<input type=\"submit\">");
-  client.println("<input type=\"reset\">");
-  client.println("</form>"); 
-  client.println("</html>");
+  String y ={
+  ("HTTP/1.1 200 OK"); 
+  ("Content-Type: text/html");
+  ("");
+  ("<!DOCTYPE HTML>");
+  ("<head>");
+  ("</head>"); 
+  ("<style>");
+  ("body {background-color: #8baee8;}"); 
+  ("</style>");
+  ("<h1><b>NOTICE BOARD </b></h1>");
+  ("<br><br><br>");
+  ("<form action=\"/DIGITAL NOTICE BOARD.php\">");
+  ("ENTER THE NOTICE HERE:<br>");
+  ("<input type=\"text\" name=\"NOTICE IS \"><br>");
+  ("<input type=\"submit\">");
+  ("<input type=\"reset\">");
+  ("</form>"); 
+  ("</html>");
+}
   delay(5000);
 
 }/*-----------------------void loop ends here------------------------------------*/
@@ -81,7 +83,7 @@ void wifi_connect(void){
 }
 
 void handleRoot() {                         // When URI / is requested, send a web page with a button to toggle the LED
-  server.send(200, "text/html", "<form action=\"/LED\" method=\"POST\"><input type=\"submit\" value=\"Toggle LED\"></form>");
+  server.send(200, "text/html", "<form action=\"/DIGITAL DISPLAY\" method=\"GET\"><input type=\"text\"></form>");
 }
 
 void handleRespond() {                          // If a POST request is made to URI /LED
